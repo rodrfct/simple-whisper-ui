@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import TheFilePicker from "./components/TheFilePicker.vue";
-
+import TheOutput from "./components/TheOutput.vue";
+import TheThemeSwitcher from "./components/TheThemeSwitcher.vue";
 </script>
 
 <template>
@@ -11,8 +12,21 @@ import TheFilePicker from "./components/TheFilePicker.vue";
 
 	<TheFilePicker />
 
+	<TheOutput />
+
+	<Suspense>
+		<TheThemeSwitcher />	
+	</Suspense>
+
   </main>
 </template>
 
-<style>
+<style scoped>
+#theme-switcher {
+	position: fixed;
+	top: 5%;
+	right: 6%;
+	font-size: 1.5rem;
+	cursor: pointer;
+}
 </style>

@@ -31,6 +31,7 @@
           typescript
           typescript-language-server
           vue-language-server
+          vtsls
           pkg-config
           gobject-introspection
         ];
@@ -53,6 +54,7 @@
         shellHook = ''
           exec fish
         '';
+
       };
 
   });

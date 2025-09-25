@@ -1,0 +1,64 @@
+@media (prefers-color-scheme: light) {
+  :root {
+    --text: hsl(42, 38%, 5%);
+    --background: hsl(36, 56%, 93%);
+    --primary: hsl(35, 15%, 59%);
+    --secondary: hsl(37, 50%, 73%);
+    --accent: hsl(36, 54%, 64%);
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: hsl(42, 38%, 95%);
+    --background: hsl(36, 56%, 7%);
+    --primary: hsl(35, 15%, 41%);
+    --secondary: hsl(37, 50%, 27%);
+    --accent: hsl(36, 54%, 36%);
+  }
+}
+
+@font-face {
+	font-family: "Noto Sans";
+	src: url('./fonts/Noto_Sans/NotoSans-VariableFont.ttf') format('truetype');
+	font-style: normal;
+	font-weight: 100 900;
+}
+
+@font-face {
+	font-family: "Noto Sans";
+	src: url('./fonts/Roboto/NotoSans-Italic-VariableFont.ttf') format('truetype');
+	font-style: italic;
+	font-weight: 100 900;
+}
+
+* {
+	box-sizing: border-box;
+	user-select: none;
+	-webkit-user-select: none;
+	margin: 0;
+ }
+
+body {
+	background-color: var(--background);
+	color: var(--text);
+	font-family: "Noto Sans";
+}
+
+h1, p {
+	margin: 1rem;
+}
+
+p {
+	font-size: 14px;
+}
+
+#app {
+	display: grid;
+	place-items: center;
+	flex-flow: row;
+	height: 100vh;
+}
+
+main {
+	text-align: center;
+}
