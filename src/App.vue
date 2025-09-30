@@ -1,7 +1,14 @@
 <script setup lang="ts">
+import { Theme } from "@tauri-apps/api/window";
 import TheFilePicker from "./components/TheFilePicker.vue";
 import TheOutput from "./components/TheOutput.vue";
 import TheThemeSwitcher from "./components/TheThemeSwitcher.vue";
+
+export interface SettingsType {
+	theme: Theme,
+	model?: string,
+	timestamps?: boolean
+}
 </script>
 
 <template>

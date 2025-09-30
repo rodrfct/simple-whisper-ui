@@ -2,11 +2,20 @@
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
   "description": "Capability for the main window",
-  "windows": ["main"],
+  "windows": [
+    "main"
+  ],
   "permissions": [
     "core:default",
     "opener:default",
-	"core:app:allow-set-app-theme",
-	"core:window:allow-set-theme"
-  ]
+    "core:app:allow-set-app-theme",
+    "core:window:allow-set-theme",
+    "fs:default",
+	{
+		"identifier": "fs:scope",
+		"allow": [{ "path": "$APPCONFIG" }, { "path": "$APPCONFIG/**/*" }]
+	},
+	"fs:allow-appconfig-read",
+	"fs:allow-appconfig-write"
+	]
 }
