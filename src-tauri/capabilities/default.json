@@ -11,11 +11,19 @@
     "core:app:allow-set-app-theme",
     "core:window:allow-set-theme",
     "fs:default",
-	{
-		"identifier": "fs:scope",
-		"allow": [{ "path": "$APPCONFIG" }, { "path": "$APPCONFIG/**/*" }]
-	},
-	"fs:allow-appconfig-read",
-	"fs:allow-appconfig-write"
-	]
+    {
+      "identifier": "fs:scope",
+      "allow": [
+        {
+          "path": "$APPCONFIG"
+        },
+        {
+          "path": "$APPCONFIG/**/*"
+        }
+      ]
+    },
+    "fs:allow-appconfig-read",
+    "fs:allow-appconfig-write",
+    "dialog:default"
+  ]
 }

@@ -3,6 +3,7 @@ import { Theme } from "@tauri-apps/api/window";
 import TheFilePicker from "./components/TheFilePicker.vue";
 import TheOutput from "./components/TheOutput.vue";
 import TheThemeSwitcher from "./components/TheThemeSwitcher.vue";
+import { pickedFile } from "./stores/pickedFile";
 
 export interface SettingsType {
 	theme: Theme,
@@ -20,9 +21,8 @@ export interface SettingsType {
 	<TheFilePicker />
 
 	<TheOutput />
-
 	<Suspense>
-		<TheThemeSwitcher />	
+		<TheThemeSwitcher />
 	</Suspense>
 
   </main>
