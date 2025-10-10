@@ -2,6 +2,7 @@
   "name": "simple-whisper-ui",
   "private": true,
   "version": "0.1.0",
+  "license": "GLP-3.0-or-later",
   "type": "module",
   "scripts": {
     "dev": "vite",
