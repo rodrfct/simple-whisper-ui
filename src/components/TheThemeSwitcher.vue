@@ -19,23 +19,17 @@
 import { ref } from "vue";
 import { getCurrentWindow, Theme } from "@tauri-apps/api/window";
 import { setTheme } from "@tauri-apps/api/app";
-import { exists, writeTextFile, readTextFile, mkdir } from "@tauri-apps/plugin-fs";
-import { appConfigDir, join } from "@tauri-apps/api/path";
-import { SettingsType } from "../App.vue";
+import { getSettings, setSettings } from "../lib/settings";
 
 const theme = ref(await getCurrentWindow().theme())
 
-const settingsFilePath = await join(await appConfigDir(), "settings.json")
 
-let settings: SettingsType
+let settings = await getSettings()
 
-if (await exists(settingsFilePath)) {
-	settings = JSON.parse(await readTextFile(settingsFilePath))
+if (settings.theme) {
 	theme.value = settings.theme
 	setThemes(settings.theme)
-} else if (!exists(await appConfigDir())) {
-	await mkdir(await appConfigDir())
-}
+} 
 
 async function setThemes(newTheme: Theme) {
 	await setTheme(newTheme);
