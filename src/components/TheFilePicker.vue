@@ -34,13 +34,7 @@ async function pickFile() {
 
 <style scoped>
 button {
-	background-color: var(--primary);
-	border: none;
-	border-radius: 5px;
-	color: inherit;
-
 	box-sizing: content-box;
-	padding: .8em 1.5em;
 	max-width: 15em;
 	max-height: 1lh;
 	white-space: nowrap;

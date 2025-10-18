@@ -39,12 +39,32 @@ import { pickedFile } from "./stores/pickedFile";
   </main>
 </template>
 
-<style scoped>
-#theme-switcher {
+<style>
+.corner-icon {
 	position: fixed;
 	top: 5%;
 	right: 6%;
 	font-size: 1.5rem;
 	cursor: pointer;
+}
+
+#theme-switcher {
+	right: 6%;
+}
+
+button {
+	background-color: var(--primary);
+	padding: .8em 1.5em;
+	border: 2px solid var(--primary);
+	border-radius: 5px;
+	color: var(--text);
+
+	cursor: pointer;
+	transition: border .5s ease, filter .5s ease;
+
+	&:hover {
+		border-color: var(--accent);
+		filter: brightness(120%);
+	}
 }
 </style>
