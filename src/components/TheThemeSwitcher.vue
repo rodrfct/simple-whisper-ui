@@ -35,33 +35,11 @@ async function setThemes(newTheme: Theme) {
 	await setTheme(newTheme);
 	await getCurrentWindow().setTheme(newTheme);
 	theme.value = await getCurrentWindow().theme()
-}
-
-async function toggleTheme() {
-	if (theme.value == "dark") {
-		if (settings) {
-			settings.theme = "light"
-			await writeTextFile(settingsFilePath, JSON.stringify(settings, null, 2))
-		} else {
-			await writeTextFile(settingsFilePath, JSON.stringify({theme: "light"}, null, 2))
-		}
-
-		setThemes("light")
-
-	} else {
-		if (settings) {
-			settings.theme = "dark"
-			await writeTextFile(settingsFilePath, JSON.stringify(settings, null, 2))
-		} else {
-			await writeTextFile(settingsFilePath, JSON.stringify({theme: "dark"}, null, 2))
-		}
-
-		setThemes("dark")
-
-	}
+	settings.theme = newTheme;
+	setSettings(settings)
 }
 </script>
 
 <template>
-	<a @click="toggleTheme" id="theme-switcher">{{ theme == "dark" ? "☀" : "☾" }}</a>
+	<a @click="theme == 'dark' ? setThemes('light') : setThemes('dark')" id="theme-switcher" class="corner-icon">{{ theme == "dark" ? "☀" : "☾" }}</a>
 </template>
