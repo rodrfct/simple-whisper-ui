@@ -20,6 +20,7 @@ import TheFilePicker from "./components/TheFilePicker.vue";
 import TheOutput from "./components/TheOutput.vue";
 import TheThemeSwitcher from "./components/TheThemeSwitcher.vue";
 import { pickedFile } from "./stores/pickedFile";
+import TheModelDownloader from "./components/TheModelDownloader.vue";
 
 </script>
 
@@ -32,8 +33,13 @@ import { pickedFile } from "./stores/pickedFile";
 	<TheFilePicker />
 
 	<TheOutput />
+
 	<Suspense>
 		<TheThemeSwitcher />
+	</Suspense>
+
+	<Suspense>
+		<TheModelDownloader />
 	</Suspense>
 
   </main>
@@ -52,6 +58,11 @@ import { pickedFile } from "./stores/pickedFile";
 	right: 6%;
 }
 
+#model-downloader {
+	left: 6%;
+	width: 1em;
+}
+
 button {
 	background-color: var(--primary);
 	padding: .8em 1.5em;
@@ -66,5 +77,19 @@ button {
 		border-color: var(--accent);
 		filter: brightness(120%);
 	}
+}
+
+dialog {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	translate: -50% -50%;
+	width: 70%;
+
+	background-color: var(--background);
+	color: inherit;
+	border: 1px solid var(--accent);
+	border-radius: 12px;
+
 }
 </style>

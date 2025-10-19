@@ -19,11 +19,18 @@
         },
         {
           "path": "$APPCONFIG/**/*"
+        },
+        {
+          "path": "$APPDATA/whisper"
+        },
+        {
+          "path": "$APPDATA/whisper/*"
         }
       ]
     },
     "fs:allow-appconfig-read",
     "fs:allow-appconfig-write",
+    "fs:allow-appdata-write",
     "dialog:default"
   ]
 }
