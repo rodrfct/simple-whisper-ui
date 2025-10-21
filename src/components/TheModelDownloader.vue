@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { appDataDir, join } from "@tauri-apps/api/path";
-import { open, exists, mkdir, remove } from "@tauri-apps/plugin-fs";
+import { open, exists, mkdir, remove, rename } from "@tauri-apps/plugin-fs";
 import { useTemplateRef, ref, watch } from "vue";
 import { getSettings, setSettings, Settings } from "../lib/settings";
 
