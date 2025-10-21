@@ -95,12 +95,8 @@ async function fetchModel(modelCard: ModelCard) {
 
 	const reader = model.body.getReader()
 
-	try {
-		await remove(filePath);
-	} catch {}
-
 	// Create file
-	const modelFile = await open(filePath, {
+	const modelFile = await open(`${filePath}.part`, {
 		append: true,
 		create: true
 	})
@@ -111,6 +107,8 @@ async function fetchModel(modelCard: ModelCard) {
 	// Handle abortion
 	modelCard.abortController.signal.addEventListener('abort', () => {
 		reader.cancel();
+		remove(`${filePath}.part`)
+		isDownloading.value = false
 		alert("Download cancelled")
 	})
 
@@ -118,7 +116,10 @@ async function fetchModel(modelCard: ModelCard) {
 	try {
 		while (true) {
 			const {done, value} = await reader.read();
-			if (done) break;
+			if (done) {
+				rename(`${filePath}.part`, filePath)
+				break;
+			}
 
 			const chunkBytes = (value && (value.byteLength ?? value.length)) || 0;
 			received += chunkBytes;
@@ -128,7 +129,7 @@ async function fetchModel(modelCard: ModelCard) {
 	} finally {
 		reader.releaseLock?.();
 		modelFile.close();
-		setModel(filePath)
+		if (await exists(filePath)) {setModel(filePath)}
 	}
 }
 
