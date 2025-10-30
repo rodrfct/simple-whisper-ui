@@ -19,12 +19,9 @@
 import { ref } from "vue";
 import { getCurrentWindow, Theme } from "@tauri-apps/api/window";
 import { setTheme } from "@tauri-apps/api/app";
-import { getSettings, setSettings } from "../lib/settings";
+import { settings } from "../stores/settings";
 
 const theme = ref(await getCurrentWindow().theme())
-
-
-let settings = await getSettings()
 
 if (settings.theme) {
 	theme.value = settings.theme
@@ -36,7 +33,6 @@ async function setThemes(newTheme: Theme) {
 	await getCurrentWindow().setTheme(newTheme);
 	theme.value = await getCurrentWindow().theme()
 	settings.theme = newTheme;
-	setSettings(settings)
 }
 </script>
 

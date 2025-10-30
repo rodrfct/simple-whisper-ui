@@ -19,7 +19,7 @@
 import { appDataDir, join } from "@tauri-apps/api/path";
 import { open, exists, mkdir, remove, rename } from "@tauri-apps/plugin-fs";
 import { useTemplateRef, ref, watch } from "vue";
-import { getSettings, setSettings, Settings } from "../lib/settings";
+import { settings } from "../stores/settings";
 
 interface ModelCard {
 	name: string;
@@ -129,21 +129,13 @@ async function fetchModel(modelCard: ModelCard) {
 	} finally {
 		reader.releaseLock?.();
 		modelFile.close();
-		if (await exists(filePath)) {setModel(filePath)}
+		if (await exists(filePath)) {settings.model = filePath;}
 	}
 }
 
 function cancelDownload(model: ModelCard) {
 	model.abortController?.abort();
 	model.progress = 0
-}
-
-async function setModel(modelPath: string) {
-	let settings: Settings = await getSettings()
-
-	settings.model = modelPath;
-	setSettings(settings)
-
 }
 
 function closeModal() {if (!isDownloading.value) {downloaderModal.value?.close()}}

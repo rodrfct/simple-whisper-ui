@@ -18,8 +18,9 @@
 import { exists, readTextFile, writeTextFile, mkdir } from "@tauri-apps/plugin-fs";
 import { appConfigDir, join } from "@tauri-apps/api/path";
 import { Theme } from "@tauri-apps/api/window";
+import { reactive, watch } from "vue";
 
-export interface Settings {
+interface Settings {
 	theme: Theme | null,
 	model?: string,
 	timestamps?: boolean
@@ -27,16 +28,11 @@ export interface Settings {
 
 const settingsFilePath = await join(await appConfigDir(), "settings.json")
 
-export async function getSettings(): Promise<Settings> {
-	if (await exists(settingsFilePath)) {
-		return JSON.parse(await readTextFile(settingsFilePath))
-	} else {
-		return {theme: null}
-	}
+export const settings = reactive<Settings>(await exists(settingsFilePath) ? JSON.parse(await readTextFile(settingsFilePath)) : {theme: null} )
 
-}
+watch(settings, (newVal) => setSettings(newVal) ,{deep: true})
 
-export async function setSettings(newSettings: Settings) {
+async function setSettings(newSettings: Settings) {
 	try {
 		await writeTextFile(settingsFilePath, JSON.stringify(newSettings, null, 2))
 	} catch {
