@@ -16,18 +16,20 @@
 
 
 <script setup lang="ts">
-import { appDataDir, join } from "@tauri-apps/api/path";
+import { join } from "@tauri-apps/api/path";
 import { open, exists, mkdir, remove, rename } from "@tauri-apps/plugin-fs";
 import { useTemplateRef, ref, watch } from "vue";
-import { settings } from "../stores/settings";
+import { settings, modelsDir } from "../stores/settings";
 
 interface ModelCard {
-	name: string;
+	name: WhisperModel;
 	description?: string;
 	url: string;
 	progress?: number;
 	abortController?: AbortController;
 }
+
+export type WhisperModel = "Tiny" | "Small" | "Base" | "Medium" | "Large"
 
 const downloaderModal = useTemplateRef("downloader-modal");
 
@@ -55,9 +57,6 @@ const models = ref<ModelCard[]>([
 		url: "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-large-v3.bin?download=true",
 	},
 ]);
-
-// Filesystem path for the models
-const modelsDir = await join(await appDataDir(), 'whisper')
 
 if (!await exists(modelsDir)) {
 	await mkdir(modelsDir, {recursive: true})

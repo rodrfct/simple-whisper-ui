@@ -21,6 +21,7 @@ import TheOutput from "./components/TheOutput.vue";
 import TheThemeSwitcher from "./components/TheThemeSwitcher.vue";
 import { pickedFile } from "./stores/pickedFile";
 import TheModelDownloader from "./components/TheModelDownloader.vue";
+import Settings from "./components/Settings.vue";
 
 </script>
 
@@ -34,9 +35,16 @@ import TheModelDownloader from "./components/TheModelDownloader.vue";
 
 	<TheOutput />
 
-	<Suspense>
-		<TheThemeSwitcher />
-	</Suspense>
+	<div id="preferences" class="corner-icon">
+
+		<Suspense>
+			<TheThemeSwitcher />
+		</Suspense>
+
+		<Suspense>
+			<Settings />
+		</Suspense>
+	</div>
 
 	<Suspense>
 		<TheModelDownloader />
@@ -49,17 +57,18 @@ import TheModelDownloader from "./components/TheModelDownloader.vue";
 .corner-icon {
 	position: fixed;
 	top: 5%;
-	right: 6%;
+	right: 5%;
 	font-size: 1.5rem;
 	cursor: pointer;
 }
 
-#theme-switcher {
-	right: 6%;
+#preferences {
+	display: flex;
+	gap: .4em;
 }
 
 #model-downloader {
-	left: 6%;
+	left: 5%;
 	width: 1em;
 }
 
@@ -80,7 +89,7 @@ button {
 }
 
 dialog {
-	position: absolute;
+	position: fixed;
 	top: 50%;
 	left: 50%;
 	translate: -50% -50%;

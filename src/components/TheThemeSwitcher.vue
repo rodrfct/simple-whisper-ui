@@ -37,5 +37,5 @@ async function setThemes(newTheme: Theme) {
 </script>
 
 <template>
-	<a @click="theme == 'dark' ? setThemes('light') : setThemes('dark')" id="theme-switcher" class="corner-icon">{{ theme == "dark" ? "☀" : "☾" }}</a>
+	<a @click="theme == 'dark' ? setThemes('light') : setThemes('dark')" id="theme-switcher" >{{ theme == "dark" ? "☀" : "☾" }}</a>
 </template>
